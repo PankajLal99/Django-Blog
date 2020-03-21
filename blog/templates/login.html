@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<body>
+    <h1>Login</h1>
+    <hr>
+    <div>
+    <form action="" method="POST">
+        {% csrf_token %}
+        Username :<input type="text" name="username">
+        Password :<input type="password" name="password">
+        <button type="submit">SignIn</button>
+    </form>
+    <hr>
+    {% for message in messages %}
+          <div class="alert alert-primary text-center" role="alert">
+            {{message}}
+          </div>
+          {% endfor %}
+        </div>
+        <hr>
+        <p class="text-center">Don't have a account ? Click <a href="{% url 'signup' %}">Here</a></p>
+</body>
+</html>
