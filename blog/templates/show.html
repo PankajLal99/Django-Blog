@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post</title>
+</head>
+<body>
+    <h1>DESCRIPTION PAGE</h1>
+    <hr>
+        
+        {% for i in content %}
+        <h3>Title:{{i.title}}</h3>
+        <h4>Author:{{i.author}}</h4>
+        <h5>Creater On:{{i.created_on}}</h5>
+        <p>{{i.content}}</p>
+        {% endfor %}
+</body>
+</html>
