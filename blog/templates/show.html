@@ -17,6 +17,7 @@
         {% for i in content %}
         
         <h3>Title : {{i.title}}</h3>
+        <img src="{{i.cover.url}}" alt="Image" height="100px" width="300px">
         <h4>Author : {{i.author}}</h4>
         <h5>Created On : {{i.created_on}}</h5>
         <p>{{i.content}}</p>            
