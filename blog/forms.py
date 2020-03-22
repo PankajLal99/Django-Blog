@@ -6,11 +6,15 @@ from django.contrib.auth.models import User
 class PostForm(forms.ModelForm):
     class Meta:
         model= Post
-        fields=['author','title','content','status','cover']
+        fields=['title','content','status','cover']
 
 class CreateUserForm(UserCreationForm):
     captcha=forms.CharField(required=True)
     class Meta:
         model = User
         fields=['username','password1','password2','captcha']
+
+        def clean():
+            
+
 

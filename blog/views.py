@@ -42,13 +42,16 @@ def show(request,pk):
 
 @login_required(login_url='login')
 def create(request):
-    form=PostForm()
     if request.method=='POST':
-        form=PostForm(request.POST,request.FILES)
-        if form.is_valid():
-            form.save()
-            return redirect('index')
-    return render(request,'create.html',{'form':form})
+        title=request.POST['title']
+        content=request.POST['content']
+        status=request.POST['status']
+        img=request.FILES['image']
+        post=Post(author=request.user,title=title,
+        content=content,status=status,cover=img)
+        post.save()
+        return redirect('index')
+    return render(request,'create.html')
 
 @login_required(login_url='login')
 def crud(request,pk):

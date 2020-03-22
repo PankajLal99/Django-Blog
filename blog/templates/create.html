@@ -6,9 +6,15 @@
     <title>Create POST</title>
 </head>
 <body>
-    <form action="" method="POST" enctype="multipart/form-data">
+    <form action="" method="POST" enctype="multipart/form-data" id="sbf">
         {% csrf_token %}
-        {{form.as_table}}
+        Title: <input type="text" name='title'>
+        Content : <textarea rows="4" cols="50" name='content' form="sbf"></textarea>
+        <select name="status" id="">
+            <option value="0">Private</option>
+            <option value="1">Publish</option>
+        </select>
+        <input type="file" name="image">
         <button type="submit">SUBMIT</button>
     </form>
 </body>
