@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from .models import *
 from .forms import *
+from .filters import *
 # Create your views here.
 #login
 from django.contrib.auth.decorators import login_required
@@ -12,13 +13,26 @@ from django.contrib.auth.models import Group
 
 from .decorators import *
 
+@login_required(login_url='login')
 def index(request):
     data=Post.objects.filter(status=1).order_by('-created_on')
+    search=PostFilter(request.GET,queryset=data)
+    data=search.qs
     context={
-        'data':data
+        'data':data,
+        'search':search,
     }
     return render(request,'index.html',context)
 
+@login_required(login_url='login')
+def proindex(request):
+    data=Post.objects.filter(author=request.user)
+    context={
+        'data':data,
+    }
+    return render(request,'own.html',context)
+
+@login_required(login_url='login')
 def show(request,pk):
     content=Post.objects.filter(id=pk)
     context={
@@ -26,7 +40,32 @@ def show(request,pk):
     }
     return render(request,'show.html',context)
 
+@login_required(login_url='login')
+def create(request):
+    form=PostForm()
+    if request.method=='POST':
+        form=PostForm(request.POST,request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('index')
+    return render(request,'create.html',{'form':form})
 
+@login_required(login_url='login')
+def crud(request,pk):
+    post=Post.objects.get(id=pk)
+    form=PostForm(instance=post)
+    if request.method=='POST':
+        form=PostForm(request.POST,request.FILES,instance=post)
+        if form.is_valid():
+            form.save()
+            return redirect('userpost')
+    return render(request,'update.html',{'form':form})
+
+@login_required(login_url='login')
+def deletepost(request,pk):
+    post=Post.objects.get(id=pk)
+    post.delete()
+    return redirect('userpost')
 
 @unauthenticated_user
 def loginPage(request):

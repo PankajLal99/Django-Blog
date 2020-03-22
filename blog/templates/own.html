@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+</head>
+<body>
+    <h1>MY POST's</h1>
+    <hr>
+    <ul>
+        <li><a href="{% url 'index' %}">Home</a></li>
+        <li><a href="{% url 'logout' %}">Logout</a></li>
+        <hr>
+        <li>hello,{{request.user}}</li>
+    </ul>
+    <hr>
+    <h3>List of POST</h3>
+    <table>
+        <tr>
+            <th>POST TITTE</th>
+            <th>Action</th>
+            <th>UPDATE</th>
+            <th>DELETE</th>
+        </tr>
+    
+    {% for i in data %}
+    <tr>
+    {% if i.title %}
+    <td>{{i}}</td>       
+    <td><a href="{% url 'show' i.id %}">Read more</a></li></td>
+    <td><a href="{% url 'crud' i.id %}">UPDATE</a></td>
+    <td><a href="{% url 'delete' i.id %}">Delete</a></td>
+    {% endif %}
+    </tr>    
+    {% endfor %}
+</table>
+    
+</body>
+</html>

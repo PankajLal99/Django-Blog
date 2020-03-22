@@ -8,12 +8,38 @@
 <body>
     <h1>HOME PAGE</h1>
     <hr>
-    <h3>List of POST</h3>
     <ul>
-        {% for i in data %}
-        <li>{{i}}         <a href="{% url 'show' i.id %}">Read more</a></li>
-        {% endfor %}
+        <li><a href="{% url 'userpost' %}">User Own POST's</a></li>
+        <li><a href="{% url 'create' %}">Create</a></li>
+        <li><a href="{% url 'logout' %}">Logout</a></li>
+        <hr>
+        <li>hello,{{request.user}}</li>
     </ul>
+    <hr>
+    <form action="" method="get">
+    {{search.form}}
+    <button type="submit">SEARCH</button>
+</form>
+    <hr>
+    <h3>List of POST</h3>
+        <table>
+            <tr>
+                <th>POST TITTE</th>
+                <th>Action</th>
+            </tr>
+            
+        {% for i in data %}
+
+        <tr>
+        {% if i.title %}
+        <td>{{i}}</td>     
+        <td><a href="{% url 'show' i.id %}">Read more</a></li></td>
+        {% endif %}
+        </tr>
+        
+        {% endfor %}
+    </table>
+   
     
 </body>
 </html>

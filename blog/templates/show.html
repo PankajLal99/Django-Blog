@@ -8,12 +8,18 @@
 <body>
     <h1>DESCRIPTION PAGE</h1>
     <hr>
-        
+    <li><a href="{% url 'index' %}">Home</a></li>
+    <li><a href="{% url 'logout' %}">Logout</a></li>
+    <li><a href="{% url 'create' %}">Create</a></li>
+    <hr>
+    <hr>
         {% for i in content %}
-        <h3>Title:{{i.title}}</h3>
-        <h4>Author:{{i.author}}</h4>
-        <h5>Creater On:{{i.created_on}}</h5>
-        <p>{{i.content}}</p>
+        
+        <h3>Title : {{i.title}}</h3>
+        <h4>Author : {{i.author}}</h4>
+        <h5>Creater On : {{i.created_on}}</h5>
+        <p>{{i.content}}</p>            
+        <hr>
         {% endfor %}
 </body>
 </html>
