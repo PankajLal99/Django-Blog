@@ -1,8 +1,7 @@
 from django.shortcuts import render
 from .models import *
 from .forms import *
-from .filters import *
-# Create your views here.
+from .filters import *# Create your views here.
 #login
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
@@ -12,6 +11,7 @@ from django.contrib.auth import login,logout,authenticate
 from django.contrib.auth.models import Group
 
 from .decorators import *
+from blog.filters import PostFilter
 
 @login_required(login_url='login')
 def index(request):

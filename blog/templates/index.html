@@ -22,17 +22,12 @@
 </form>
     <hr>
     <h3>List of POST</h3>
-        <table>
-            <tr>
-                <th>POST TITTE</th>
-                <th>Action</th>
-            </tr>
-            
+    <h5>Click on any post to read about it more!</h5>
+        <table style="width: 100%;">
         {% for i in data %}
         <tr>
-        {% if i.title %}
-        <td>{{i}}</td>     
-        <td><a href="{% url 'show' i.id %}">Read more</a></li></td>
+        {% if i.title %}   
+        <td><a href="{% url 'show' i.id %}">{{i}}</a></li></td>
         {% endif %}
         </tr>
         

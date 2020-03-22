@@ -11,7 +11,7 @@
     <div>
         <form method="POST" action="">
             {% csrf_token %}
-            {{form.as_table}}
+            {{form.as_p}}
             <button type="submit">Sign in</button>
             <hr>
           </form>
