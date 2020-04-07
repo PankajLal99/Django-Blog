@@ -5,10 +5,15 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
 from random import randint
-
-a=randint(1,10)
-b=randint(1,10)
-cap='Sum of '+str(a)+'+'+str(b)
+a=int()
+b=int()
+def random():
+    global a
+    global b
+    a=randint(1,10)
+    b=randint(1,10)
+    cap='Sum of '+str(a)+'+'+str(b)
+    return cap
 
 class PostForm(forms.ModelForm):
     class Meta:
@@ -16,14 +21,13 @@ class PostForm(forms.ModelForm):
         fields=['title','content','status','cover']
 
 class CreateUserForm(UserCreationForm):
-    captcha=forms.CharField(required=True,label='Enter Captcha '+cap)
+    sums=random()
+    captcha=forms.CharField(required=True,label='Enter Captcha '+sums)
     class Meta:
         model = User
         fields=['username','password1','password2','captcha']
 
     def clean_captcha(self):
-        global a
-        global b
         data =self.cleaned_data.get('captcha')
         if str(a+b) == str(data):
             print('**'*50)
